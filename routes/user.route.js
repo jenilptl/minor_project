@@ -1,35 +1,37 @@
 const express = require('express');
-const { getAllUsers, getUserById, deleteUser, insertUser } = require('../services/users.service');
+const { getAllUsers, getUserById, deleteUser, insertUser, updateUser } =
+  require('../services/users.service');
+
 
 const routeUser = express.Router();
 
 //get all
-routeUser.get('/',(req,res)=>{
-    const data = getAllUsers()
+routeUser.get('/',async(req,res)=>{
+    const data = await getAllUsers()
     res.send(data);
 })
 
 //get by id
-routeUser.get('/:id',(req,res)=>{
-    const data = getUserById(req.params.id)
+routeUser.get('/:id',async(req,res)=>{
+    const data = await getUserById(req.params.id)
     res.send(data);
 })
 
 //insert new user
-routeUser.post('/',(req,res)=>{
-    const data = insertUser(req.body)
+routeUser.post('/',async(req,res)=>{
+    const data = await insertUser(req.body)
     res.send(data);
 })
 
 //edit user
-routeUser.patch('/:id',(req,res)=>{
-    const data = updateUser(req.params.id, req.body)
-    res.send("update user");
+routeUser.patch('/:id',async(req,res)=>{
+    const data =await updateUser(req.params.id, req.body)
+    res.send(data);
 })
 
 //delete user
-routeUser.delete('/:id',(req,res)=>{
-    const data = deleteUser(req.params.id);
-    res.send("user deleted");
+routeUser.delete('/:id',async(req,res)=>{
+    const data = await deleteUser(req.params.id);
+    res.send(data);
 })
 module.exports = routeUser;

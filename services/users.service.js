@@ -1,20 +1,72 @@
-function getAllUsers(){
-    return "get all user service called"
+const { getAll , getById, Insert, Update } = require("../models/users.model")
+
+async function getAllUsers(){
+    const data = await getAll()
+    if(data){
+        return {
+            error : false,
+            data,
+            massage: "data fatechd successfully"
+        }
+    }else{
+        return {
+            error : true,
+            massage: "soem error occured while fetching data"
+        }
+    }
+
 }
 
-function getUserById(id){
-    return "get user by id service called for"+id
+async function getUserById(id){
+
+    const data = await getById(id)
+    if(data){
+        return {
+            error : false,
+            data,
+            massage: "data fatechd successfully"
+        }
+    }else{
+        return {
+            error : true,
+            massage: "soem error occured while fetching data"
+        }
+    }
 }
 
-function insertUser(formData){
-    return "insert user service called for"
+async function insertUser(formData){
+    const data = await  Insert(formData)
+    if(data){
+        return {
+            error : false,
+            data,
+            massage: "data inserted successfully"
+        }
+    }else{
+        return {
+            error : true,
+            massage: "soem error occured while inserting data"
+        }
+    }
 }
 
-function updateUser(id, formData){
-    return "Update user by id service called for"+id
+async function updateUser(id, formData){
+    const data = await  Update(id,formData)
+    if(data){
+        return {
+            error : false,
+            data,
+            massage: "data patched successfully"
+        }
+    }else{
+        return {
+            error : true,
+            massage: "soem error occured while patching data"
+        }
+    }
 }
 
-function deleteUser(id){
+async  function deleteUser(id){
     return "Delete user by id service called for"+id
 }
 

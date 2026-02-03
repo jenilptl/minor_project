@@ -1,11 +1,11 @@
 const { createPool } = require("mysql2/promise");
 
-const pool = createPool({
-  host: "localhost",
-  database: "kpp",
-  user: "root",
-  password: "",
-  connectionLimit: 10,
+const db  = createPool({
+  host:"localhost",
+  user:"root",
+  password:"",
+  database:"kpp",
+  connectionLimit:12
 });
 
-module.exports = { pool };
+module.exports = db
