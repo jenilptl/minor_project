@@ -1,4 +1,4 @@
-const { getAll , getById, Insert, Update } = require("../models/users.model")
+const { getAll, getById, Insert, Update, deletebyid } = require("../models/users.model")
 
 async function getAllUsers(){
     const data = await getAll()
@@ -6,12 +6,12 @@ async function getAllUsers(){
         return {
             error : false,
             data,
-            massage: "data fatechd successfully"
+            message: "data fetched successfully"
         }
     }else{
         return {
             error : true,
-            massage: "soem error occured while fetching data"
+            message: "some error occurred while fetching data"
         }
     }
 
@@ -24,51 +24,63 @@ async function getUserById(id){
         return {
             error : false,
             data,
-            massage: "data fatechd successfully"
+            message: "data fetched successfully"
         }
     }else{
         return {
             error : true,
-            massage: "soem error occured while fetching data"
+            message: "some error occurred while fetching data"
         }
     }
 }
 
 async function insertUser(formData){
-    const data = await  Insert(formData)
+    const data = await Insert(formData)
     if(data){
         return {
             error : false,
             data,
-            massage: "data inserted successfully"
+            message: "data inserted successfully"
         }
     }else{
         return {
             error : true,
-            massage: "soem error occured while inserting data"
+            message: "some error occurred while inserting data"
         }
     }
 }
 
 async function updateUser(id, formData){
-    const data = await  Update(id,formData)
+    const data = await Update(id, formData)
     if(data){
         return {
             error : false,
             data,
-            massage: "data patched successfully"
+            message: "data updated successfully"
         }
     }else{
         return {
             error : true,
-            massage: "soem error occured while patching data"
+            message: "some error occurred while updating data"
         }
     }
 }
 
-async  function deleteUser(id){
-    return "Delete user by id service called for"+id
+async function deleteUser(id){
+    const data = await deletebyid(id)
+    if(data){
+        return {
+            error : false,
+            data,
+            message: "user deleted successfully"
+        }
+    }else{
+        return {
+            error : true,
+            message: "some error occurred while deleting user"
+        }
+    }
 }
 
 
-module.exports = {getAllUsers,getUserById,insertUser,updateUser,deleteUser}
+module.exports = {getAllUsers,getUserById,insertUser,updateUser,deleteUser}

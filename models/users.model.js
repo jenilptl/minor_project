@@ -11,7 +11,7 @@ async function getAll(){
 
 async function getById(id){
     try{
-        const [data,field]= await db.query("SELECT * from users where UserID="+id);
+        const [data,field]= await db.query("SELECT * from users WHERE UserID = ?", [id]);
         return data[0];
     }catch(err){
         return false
@@ -20,7 +20,10 @@ async function getById(id){
 
 async function Insert(formData){
     try{
-        const [data,field]= await db.query(`INSERT INTO users (UserID, UserName, Password) VALUES (NULL, '${formData.UserName}', '${formData.Password}')`);
+        const [data,field]= await db.query(
+            "INSERT INTO users (UserID, UserName, Password) VALUES (NULL, ?, ?)",
+            [formData.UserName, formData.Password]
+        );
         return data;
     }catch(err){
         return false
@@ -40,9 +43,9 @@ async function Update(id, formData){
 }
 
 
-async function deletebyid(){
+async function deletebyid(id){
     try{
-        const [data,field] = await db.query("SELECT * from users");
+        const [data,field] = await db.query("DELETE FROM users WHERE UserID = ?", [id]);
         return data;
     }catch(err){
         return false

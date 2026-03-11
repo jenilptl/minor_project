@@ -1,7 +1,7 @@
 {
   "name": "minor_project",
   "version": "1.0.0",
-  "description": "",
+  "description": "A RESTful API for user management built with Express.js and MySQL",
   "homepage": "https://github.com/jenilptl/minor_project#readme",
   "bugs": {
     "url": "https://github.com/jenilptl/minor_project/issues"
@@ -11,17 +11,22 @@
     "url": "git+https://github.com/jenilptl/minor_project.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "jenilptl",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "mysql2": "^3.16.2",
+    "mysql2": "^3.16.2"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.11"
   }
 }
+

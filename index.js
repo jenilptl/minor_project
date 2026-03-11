@@ -4,9 +4,11 @@ const routeUser = require('./routes/user.route');
 dotenv.config()
 const app = express();
 
-app.use(express.json());
-app.use('/users',routeUser)
+const PORT = process.env.PORT || 3000;
 
-app.listen(process.env.PORT,()=>{
-    console.log("server started at 3000");   
-})
+app.use(express.json());
+app.use('/users', routeUser)
+
+app.listen(PORT, () => {
+    console.log(`Server started at http://localhost:${PORT}`);
+})
